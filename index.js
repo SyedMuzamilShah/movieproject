@@ -28,8 +28,11 @@ searchForm.addEventListener("submit", async (e) => {
     var SreachItemsPlace = document.getElementById('placesreachitems')
     var next = document.getElementById('place')
     next.innerHTML = '';
+    
     items.forEach((item, index) => {
-        const { runtime, poster_path, title, certification, genres, homepage } = item;
+        
+        const { runtime, poster_path, title, certification, genres, homepage, release_date } = item;
+        console.log(release_date)
         var copy = SreachItemsPlace.cloneNode(true);
         copy.querySelector('#rankid').innerText = index + 1;
         copy.querySelector('#imageid').src = `https://image.tmdb.org/t/p/w500${poster_path}`;
@@ -38,6 +41,7 @@ searchForm.addEventListener("submit", async (e) => {
         copy.querySelector('#movietypeid').textContent = genres
         copy.querySelector('#playtimeid').textContent = timecal({ runtime });
         copy.querySelector('#likeid').href = homepage;
+        copy.querySelector('#yearid').textContent = release_date;
         
         next.appendChild(copy);
     });
